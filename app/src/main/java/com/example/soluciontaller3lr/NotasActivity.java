@@ -13,14 +13,18 @@ import com.example.soluciontaller3lr.basesdedatos.AdminSQLiteOpenHelper;
 
 public class NotasActivity extends AppCompatActivity {
 
-    private EditText etCodigo, etDescripcion, etNota1, etNota2, etNota3, etNota4;
-
+    private EditText etCodigo ;
+    private EditText etNombre;
+    private EditText etNota1;
+    private EditText etNota2;
+    private EditText etNota3;
+    private EditText etNota4;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notas);
         etCodigo = findViewById(R.id.txtCodigo);
-        etDescripcion = findViewById(R.id.txtDescripcion);
+        etNombre= findViewById(R.id.txtDescripcion);
         etNota1 = findViewById(R.id.txtNota1);
         etNota2 = findViewById(R.id.txtNota2);
         etNota3 = findViewById(R.id.txtNota3);
@@ -32,7 +36,7 @@ public class NotasActivity extends AppCompatActivity {
         SQLiteDatabase baseDeDatos = admin.getWritableDatabase();
 
         String codigo = etCodigo.getText().toString();
-        String descripcion = etDescripcion.getText().toString();
+        String nombre = etNombre.getText().toString();
         String nota1 = etNota1.getText().toString();
         String nota2 = etNota2.getText().toString();
         String nota3 = etNota3.getText().toString();
@@ -45,25 +49,22 @@ public class NotasActivity extends AppCompatActivity {
         int totalNota;
         totalNota = ((calificacion1 + calificacion2 + calificacion3 + calificacion4) / 4);
 
-        if(!codigo.isEmpty() && !descripcion.isEmpty() && !nota1.isEmpty()){
+        if(!codigo.isEmpty() && !nombre.isEmpty() && !nota1.isEmpty()){
             ContentValues registro = new ContentValues();
 
             registro.put("codigo", codigo);
-            registro.put("descripcion", descripcion);
+            registro.put("nombre", nombre);
             registro.put("nota1", nota1);
             registro.put("nota2", nota2);
             registro.put("nota3", nota3);
             registro.put("nota4", nota4);
             registro.put("total", totalNota);
 
-
-
-
             baseDeDatos.insert("notas", null, registro);
 
             baseDeDatos.close();
             etCodigo.setText("");
-            etDescripcion.setText("");
+            etNombre.setText("");
             etNota1.setText("");
             etNota2.setText("");
             etNota3.setText("");
@@ -74,6 +75,5 @@ public class NotasActivity extends AppCompatActivity {
             Toast.makeText(this, "Debes llenar todos los campos", Toast.LENGTH_SHORT).show();
         }
     }
-
 
 }

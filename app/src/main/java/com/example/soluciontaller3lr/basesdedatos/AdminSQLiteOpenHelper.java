@@ -14,11 +14,11 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase basesDeDatos) {
-        basesDeDatos.execSQL("create table notas(codigo int primary key, descripcion text, nota1 int, nota2 int, nota3 int, nota4 int, total int)");
+        basesDeDatos.execSQL("create table notas(codigo int primary key, nombre text, nota1 int, nota2 int, nota3 int, nota4 int, total int)");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-
+        //Hello world !
     }
 }
